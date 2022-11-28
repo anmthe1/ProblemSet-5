@@ -83,6 +83,7 @@ public class Snake {
                 elongate = false ;
             }
         }
+
     }
 
     //2 condition that ends the game
