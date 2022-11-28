@@ -190,6 +190,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
     }
 
     public static void main(String[] args) {
+
         flappyBird = new FlappyBird();
     }
 
