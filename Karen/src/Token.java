@@ -7,6 +7,7 @@ public class Token { //create token placed randomly for snake to chase
     public Token (Snake s){
         x = (int)(Math.random() * 395);
         y = (int)(Math.random() * 395);
+        snake = s;
     }
 
     public void changePosition(){

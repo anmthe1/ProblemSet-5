@@ -27,10 +27,11 @@ public class Snake {
     }
 
     //take graphics g to create snake object in snake game; make snake white colored (rectangular shape)
-    public static void draw(Graphics g) {
+    public void draw(Graphics g) {
         g.setColor(Color.white);
         for (Point p : snakePoints) { //snake is made up of many rectangles 4 by 4 (dependent on snake points), y is the same as it is the same horizontally until snake moves
             g.fillRect(p.getX(), p.getY(), 4, 4);
+            System.out.println(p);
         }
     }
 
@@ -90,11 +91,11 @@ public class Snake {
     public boolean snakeCollision(){
         int x = this.getX();
         int y = this.getY();
-        for(int i = 1; i < snakePoints.size(); i++){
-            if(snakePoints.get(i).getX() == x && snakePoints.get(i).getY() == y);
-            return true;
+        for(int i = 1; i < snakePoints.size() -1; i++){
+            if(snakePoints.get(i).getX() == x && snakePoints.get(i).getY() == y)
+                return true;
         }
-            return false;
+        return false;
     }
 
     //create accessors for snake to move and elongate
