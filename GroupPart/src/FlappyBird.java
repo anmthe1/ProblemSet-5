@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
@@ -21,7 +23,12 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
     public Random rand;
 
-    public FlappyBird() {
+
+    public FlappyBird()  {
+        bird = new Bird(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20 ,20);
+
+
+
         JFrame jframe = new JFrame();
         Timer timer = new Timer(20, this);
 
@@ -37,7 +44,12 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
         jframe.setResizable(false);
         jframe.setVisible(true);
 
-        bird = new Bird(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20 ,20);
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         columns = new ArrayList<Rectangle>();
 
         addColumn(true);
