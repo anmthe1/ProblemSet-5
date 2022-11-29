@@ -15,7 +15,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
     public Bird bird;
 
-    public ArrayList<Rectangle> columns;
+    public ArrayList<Columns> columns;
 
     public int ticks, yMotion, score;
 
@@ -50,7 +50,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
             throw new RuntimeException(e);
         }
 
-        columns = new ArrayList<Rectangle>();
+        columns = new ArrayList<Columns>();
 
         addColumn(true);
         addColumn(true);
@@ -66,24 +66,32 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
         int height = 50 + rand.nextInt(300);
 
         if (start) {
-            columns.add(new Rectangle(WIDTH + width + columns.size() * 300, HEIGHT - height - 120, width, height));
-            columns.add(new Rectangle(WIDTH + width + (columns.size() - 1) * 300, 0, width, HEIGHT - height - space));
+            columns.add(new Columns(WIDTH + width + columns.size() * 300, HEIGHT - height - 120, width, height));
+            columns.add(new Columns(WIDTH + width + (columns.size() - 1) * 300, 0, width, HEIGHT - height - space));
         }
         else {
-            columns.add(new Rectangle(columns.get(columns.size() - 1).x + 600, HEIGHT - height - 120, width, height));
-            columns.add(new Rectangle(columns.get(columns.size() - 1).x, 0, width, HEIGHT - height - space));
+            columns.add(new Columns(columns.get(columns.size() - 1).x + 600, HEIGHT - height - 120, width, height));
+            columns.add(new Columns(columns.get(columns.size() - 1).x, 0, width, HEIGHT - height - space));
         }
 
     }
 
-    public void paintColumn(Graphics g, Rectangle column) {
-        g.setColor(Color.green.darker());
-        g.fillRect(column.x, column.y, column.width, column.height);
+    public void paintColumn(Graphics g, Columns column) {
+//        g.setColor(Color.green.darker());
+//        g.fillRect(column.x, column.y, column.width, column.height);
+        column.draw(g);
     }
 
     public void jump() {
         if (gameOver) {
             bird = new Bird(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20 ,20);
+
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
             columns.clear();
             yMotion = 0;
             score = 0;
@@ -117,7 +125,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
         }
 
         for (int i = 0; i < columns.size(); i++) {
-            Rectangle column = columns.get(i);
+            Columns column = columns.get(i);
             column.x -= speed;
         }
 
@@ -126,7 +134,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
         }
 
         for (int i = 0; i < columns.size(); i++) {
-            Rectangle column = columns.get(i);
+            Columns column = columns.get(i);
 
             if (column.x + column.width < 0) {
                 columns.remove(column);
@@ -139,7 +147,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
         bird.y += yMotion;
 
-        for (Rectangle column : columns) {
+        for (Columns column : columns) {
             if (column.y == 0 && bird.x + bird.width / 2 > column.x + column.width / 2 - 10 && bird.x + bird.width / 2 < column.x + column.width / 2 + 10) {
                 score++;
             }
@@ -171,7 +179,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
     }
 
     public void repaint(Graphics g) {
-        g.setColor(Color.cyan);
+        g.setColor(Color.white);
         g.fillRect(0,0, WIDTH, HEIGHT);
 
         g.setColor(Color.orange);
@@ -185,10 +193,10 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
 
 
-        for (Rectangle column : columns) {
+        for (Columns column : columns) {
             paintColumn(g, column);
         }
-        g.setColor(Color.white);
+        g.setColor(Color.pink);
         g.setFont(new Font("Arial", 1, 100));
 
         if (!started) {

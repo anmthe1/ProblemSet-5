@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Bird extends Rectangle{
 
@@ -41,8 +42,8 @@ public class Bird extends Rectangle{
         }
         if (response ==4) {
             imageName = "GroupPart/src/images.jpg";
-        }
 
+        }
 
 
         try {
