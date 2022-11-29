@@ -29,7 +29,7 @@ public class Bird extends Rectangle{
 
         if(response ==5){
             Random rand = new Random();
-            response = rand.nextInt(1,5);
+            response = rand.nextInt(5);
         }
         if (response ==1) {
             imageName = "GroupPart/src/images.png";
