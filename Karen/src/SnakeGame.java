@@ -99,15 +99,15 @@ public class SnakeGame extends JFrame implements Runnable, KeyListener { //KeyLi
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
             if(snake.getXDir() != 1){
-                snake.setyDir(-1);
-                snake.setXDir(0);
+                snake.setXDir(-1);
+                snake.setyDir(0);
             }
 
         }
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            if(snake.getYDir()!= -1){
-                snake.setyDir(1);
-                snake.setXDir(0);
+            if(snake.getXDir()!= -1){
+                snake.setXDir(1);
+                snake.setyDir(0);
             }
         }
     }
