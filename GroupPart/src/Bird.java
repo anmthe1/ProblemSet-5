@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Bird extends Rectangle{
 
@@ -29,7 +28,7 @@ public class Bird extends Rectangle{
 
         if(response ==5){
             Random rand = new Random();
-            response = rand.nextInt(5);
+            response = rand.nextInt(1,5);
         }
         if (response ==1) {
             imageName = "GroupPart/src/images.png";
@@ -42,8 +41,8 @@ public class Bird extends Rectangle{
         }
         if (response ==4) {
             imageName = "GroupPart/src/images.jpg";
-
         }
+
 
 
         try {
@@ -57,5 +56,16 @@ public class Bird extends Rectangle{
     public void draw(Graphics g) {
         //g.fillRect(this.x, this.y, this.width, this.height);
         g.drawImage(image, this.x, this.y, this.width, this.height, null);
+    }
+
+    public static BufferedImage resize(BufferedImage img, int newW, int newH) {
+        Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+        BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2d = dimg.createGraphics();
+        g2d.drawImage(tmp, 50, 50, null);
+        g2d.dispose();
+
+        return dimg;
     }
 }

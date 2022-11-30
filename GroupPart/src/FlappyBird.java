@@ -25,7 +25,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
 
     public FlappyBird()  {
-        bird = new Bird(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20 ,20);
+        bird = new Bird(WIDTH / 2 - 10, HEIGHT / 2 - 10, 50,50);
 
 
 
@@ -84,7 +84,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
     public void jump() {
         if (gameOver) {
-            bird = new Bird(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20 ,20);
+            bird = new Bird(WIDTH / 2 - 10, HEIGHT / 2 - 10, 50 ,50);
 
             try {
                 TimeUnit.SECONDS.sleep(3);
@@ -117,7 +117,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int speed = 10;
+        int speed = 5;
         ticks++;
 
         if (started) {
@@ -182,10 +182,10 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
         g.setColor(Color.white);
         g.fillRect(0,0, WIDTH, HEIGHT);
 
-        g.setColor(Color.orange);
+        g.setColor(Color.blue);
         g.fillRect(0, HEIGHT - 120, WIDTH, 120);
 
-        g.setColor(Color.green);
+        g.setColor(Color.cyan);
         g.fillRect(0, HEIGHT - 120, WIDTH, 20);
 
         g.setColor(Color.red);
